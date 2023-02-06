@@ -1,7 +1,7 @@
 // Carregando módulos
     const express = require('express');
     const handlebars = require('express-handlebars');
-    const bodyParse = require('body-parser');
+    const bodyParser = require('body-parser');
     const app = express();
     const admin = require('./routes/admin')
     const path = require('path')
@@ -9,8 +9,8 @@
 
 // Configurações
     // Body Parser
-    app.use(bodyParse.urlencoded({extended: false}))
-    app.use(bodyParse.json())
+    app.use(bodyParser.urlencoded({extended: false}))
+    app.use(bodyParser.json())
     // Handlebars
     app.engine('handlebars', handlebars.engine({ defaultLayout: 'main' }))
     app.set('view engine', 'handlebars')
@@ -27,6 +27,8 @@
 
     // Public
     app.use(express.static(path.join(__dirname,"public")))
+    app.use(express.urlencoded({ extended: true }))
+    app.use(express.json())
 // Rotas
     app.use('/admin', admin);
 // Outros
