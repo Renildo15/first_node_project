@@ -11,6 +11,12 @@
             <h4>{{nome}}</h4>
             <small>Slug: {{slug}}</small><br>
             <small>Data de criação: {{#formatDate data}}{{/formatDate}}</small>
+            <br>
+            <a href="/admin/categorias/edit/{{_id}}">
+                <button class="btn btn-success mt-4">
+                    Editar categoria
+                </button>
+            </a>
         </div>
     </div>
 {{else}}
