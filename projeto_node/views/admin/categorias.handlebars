@@ -17,9 +17,13 @@
                     Editar categoria
                 </button>
             </a>
+            <form action="/admin/categorias/deletar" method="post">
+                <input type="hidden" name="id" value="{{_id}}">
+                <button type="submit" class="btn btn-danger mt-2">Deletar categoria</button>
+            </form>
         </div>
     </div>
 {{else}}
-
+    <h4 class="mt-3">Nenhuma categoria registrada!</h4>
 {{/each}}
 
