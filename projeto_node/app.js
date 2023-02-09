@@ -8,7 +8,10 @@
     const mongoose = require('mongoose');
     const session = require("express-session");
     const flash = require("connect-flash");
-    const moment = require('moment')
+    const moment = require('moment');
+    const router = require('./routes/admin');
+    require("./models/Postagem")
+    const Postagem = mongoose.model("postagens")
 
 // Configurações
 
@@ -60,6 +63,17 @@
     app.use(express.json())
 
 // Rotas
+    app.get('/', (req, res)=>{
+        Postagem.find().populate("categoria").lean().sort({data:"desc"}).then((postagens)=>{
+            res.render("index", {postagens:postagens})
+        }).catch((err)=>{
+            req.flash("error_msg","Houve um erro interno")
+            res.redirect("/404")
+        })
+    })
+    app.get("/404",(req, res)=>{
+        res.send("Erro 404!")
+    })
     app.use('/admin', admin);
 // Outros
 const PORT = 8081;
