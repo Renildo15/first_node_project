@@ -13,10 +13,13 @@
 
 
 {{#each postagens }}
-    <div class="card">
+    <div class="card mt-4">
         <div class="card-body">
+            <small>Categoria: {{categoria.nome}}</small><br>
+            <small>Data de publicação: {{#formatDate data}}{{/formatDate}}</small>
             <h4>{{titulo}}</h4>
             <p>Descrição: {{descricao}}</p>
+            <a href="/postagens/{{slug}}"><button class="btn btn-success">Leia mais</button></a>
         </div>
     </div>
 {{else}}
