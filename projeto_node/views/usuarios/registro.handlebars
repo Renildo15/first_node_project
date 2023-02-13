@@ -1,6 +1,7 @@
 {{#each erros}}
-    <div class="alert alert-danger">
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
         {{texto}}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
 {{else}}
 {{/each}}
