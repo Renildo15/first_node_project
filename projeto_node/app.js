@@ -11,10 +11,12 @@
     const flash = require("connect-flash");
     const moment = require('moment');
     const router = require('./routes/admin');
+    const passport = require('passport');
     require("./models/Postagem")
     require("./models/Categoria")
     const Postagem = mongoose.model("postagens")
     const Categoria = mongoose.model("categorias")
+    require("./config/auth")(passport)
 
 // Configurações
 
@@ -24,12 +26,17 @@
         resave: true,
         saveUninitialized: true
     }));
+
+
+    app.use(passport.initialize())
+    app.use(passport.session())
     app.use(flash());
 
     // Middleware
     app.use((req, res, next)=>{
         res.locals.success_msg = req.flash("success_msg");
         res.locals.error_msg = req.flash("error_msg");
+        res.locals.error = req.flash("error")
         next();
     });
 
