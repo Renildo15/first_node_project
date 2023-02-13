@@ -4,6 +4,7 @@
     const bodyParser = require('body-parser');
     const app = express();
     const admin = require('./routes/admin');
+    const usuarios = require('./routes/usuario')
     const path = require('path');
     const mongoose = require('mongoose');
     const session = require("express-session");
@@ -120,6 +121,7 @@
         res.send("Erro 404!")
     })
     app.use('/admin', admin);
+    app.use('/usuarios', usuarios)
 // Outros
 const PORT = 8081;
 
